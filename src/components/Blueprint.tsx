@@ -4,25 +4,31 @@ const PRODUCTIONS = [
   {
     title: 'Coolie Dance Rhythm',
     year: '2004',
-    detail: 'Multi-platinum · Sampled by Pitbull, Kehlani · Global chart impact',
+    detail: 'Multi-platinum certified · Featured Elephant Man, Sean Paul, and 20+ chart singles · Sampled by Pitbull ("Culo") and Kehlani · Defined the sound of an era',
     tag: 'LANDMARK',
   },
   {
     title: 'Reggae Sumfest',
     year: '1993–',
-    detail: 'Strategic architect of Jamaica\'s largest music festival · International marketing',
+    detail: "Marketing architect for Jamaica's largest music festival · Montego Bay, Jamaica · International broadcast partnerships · 30,000+ annual attendees · Platform that launched global careers",
     tag: 'INSTITUTION',
   },
   {
     title: 'Downsound Entertainment',
     year: '2000s–',
-    detail: 'CEO & Founder · Premier Jamaican music label and entertainment company',
+    detail: 'CEO & Founder · Full-service label, events, and artist management · Home to Aidonia, Dexta Daps, and leading dancehall acts · Bridging Jamaican street culture and global industry standards',
     tag: 'EXECUTIVE',
+  },
+  {
+    title: 'Artist Development',
+    year: 'Ongoing',
+    detail: 'A&R methodology built on cultural authenticity · Identified and developed career trajectories for major dancehall acts · From raw talent to international stage — the full infrastructure',
+    tag: 'A&R',
   },
   {
     title: 'Abood Music',
     year: 'Active',
-    detail: 'Publishing and rights management arm · Protecting Jamaican music catalogues',
+    detail: 'Publishing and rights management arm · Royalty collection, sync licensing, and IP protection · Ensuring Jamaican music creators control and benefit from their own legacy',
     tag: 'PUBLISHING',
   },
 ];
