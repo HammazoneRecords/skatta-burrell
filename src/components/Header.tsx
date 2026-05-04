@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Instagram } from 'lucide-react';
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -46,13 +46,24 @@ export default function Header() {
             ))}
           </nav>
 
-          <button
-            onClick={() => setOpen(true)}
-            className="w-10 h-10 flex items-center justify-center border md:hidden transition-colors"
-            style={{ borderColor: 'rgba(100,255,218,0.3)', color: '#64FFDA' }}
-          >
-            <Menu size={18} />
-          </button>
+          <div className="flex items-center gap-4">
+            <a
+              href="https://www.instagram.com/skattaburrell/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden md:flex w-9 h-9 items-center justify-center border transition-all hover:border-green hover:text-green"
+              style={{ borderColor: 'rgba(100,255,218,0.25)', color: 'rgba(100,255,218,0.6)' }}
+            >
+              <Instagram size={15} />
+            </a>
+            <button
+              onClick={() => setOpen(true)}
+              className="w-10 h-10 flex items-center justify-center border md:hidden transition-colors"
+              style={{ borderColor: 'rgba(100,255,218,0.3)', color: '#64FFDA' }}
+            >
+              <Menu size={18} />
+            </button>
+          </div>
         </div>
       </header>
 

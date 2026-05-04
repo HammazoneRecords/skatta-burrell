@@ -1,4 +1,4 @@
-import { ArrowUp } from 'lucide-react';
+import { ArrowUp, Instagram } from 'lucide-react';
 
 export default function Footer() {
   return (
@@ -18,6 +18,15 @@ export default function Footer() {
               {href.replace('#', '')}
             </a>
           ))}
+          <a
+            href="https://www.instagram.com/skattaburrell/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-9 h-9 flex items-center justify-center border transition-all hover:bg-green hover:border-green hover:text-navy"
+            style={{ borderColor: 'rgba(100,255,218,0.25)', color: '#64FFDA' }}
+          >
+            <Instagram size={15} />
+          </a>
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
             className="w-9 h-9 flex items-center justify-center border transition-all hover:bg-green hover:border-green hover:text-navy"
