@@ -68,15 +68,17 @@ export default function Hero() {
       {/* Background grid */}
       <div className="absolute inset-0 grid-line opacity-60" />
 
-      {/* Hero photo */}
-      <div className="absolute inset-0 z-0">
+      {/* Cutout figure — right-anchored, full height */}
+      <div className="absolute inset-0 z-0 flex justify-end items-end pointer-events-none">
         <img
-          src="/skatta-hero.webp"
+          src="/skatta-hero-cutout.png"
           alt="Skatta Burrell"
-          className="w-full h-full object-cover object-top"
-          style={{ filter: 'saturate(0.7) brightness(0.45)' }}
+          className="h-full w-auto max-w-none object-contain object-bottom"
+          style={{ filter: 'drop-shadow(-8px 0 40px rgba(100,255,218,0.12))' }}
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-navy/95 via-navy/70 to-navy/40" />
+        {/* Fade left edge so text sits clean */}
+        <div className="absolute inset-0 bg-gradient-to-r from-navy via-navy/80 to-transparent" />
+        {/* Fade bottom */}
         <div className="absolute inset-0 bg-gradient-to-t from-navy via-transparent to-transparent" />
       </div>
 
