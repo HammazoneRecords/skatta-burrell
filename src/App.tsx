@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { motion, useScroll, useSpring } from 'motion/react';
 import { Info } from 'lucide-react';
 import Header from './components/Header';
@@ -6,14 +7,18 @@ import Blueprint from './components/Blueprint';
 import About from './components/About';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import Interviews from './components/Interviews';
+
+export type Page = 'main' | 'interviews';
 
 export default function App() {
+  const [page, setPage] = useState<Page>('main');
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30, restDelta: 0.001 });
 
   return (
     <div className="min-h-screen bg-navy text-white">
-      <Header />
+      <Header page={page} setPage={setPage} />
 
       {/* Scroll progress — LED green */}
       <motion.div
@@ -21,14 +26,19 @@ export default function App() {
         style={{ scaleX, height: 2, background: '#64FFDA' }}
       />
 
-      <main>
-        <Hero />
-        <Blueprint />
-        <About />
-        <Contact />
-      </main>
+      {page === 'main' && (
+        <main>
+          <Hero />
+          <Blueprint />
+          <About />
+          <Contact />
+          <Footer />
+        </main>
+      )}
 
-      <Footer />
+      {page === 'interviews' && (
+        <Interviews onBack={() => setPage('main')} />
+      )}
 
       {/* DISCLAIMER BANNER */}
       <div className="fixed bottom-0 left-0 right-0 z-50 px-4 py-2 flex items-center justify-center gap-2" style={{ background: 'rgba(245,158,11,0.08)', borderTop: '1px solid rgba(245,158,11,0.2)' }}>

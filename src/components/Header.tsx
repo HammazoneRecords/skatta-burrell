@@ -1,8 +1,11 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Menu, X, Instagram } from 'lucide-react';
+import type { Page } from '../App';
 
-export default function Header() {
+interface Props { page: Page; setPage: (p: Page) => void; }
+
+export default function Header({ page, setPage }: Props) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -12,11 +15,25 @@ export default function Header() {
     return () => window.removeEventListener('scroll', fn);
   }, []);
 
-  const links = [
+  const scrollLinks = [
     { label: 'Blueprint', href: '#blueprint' },
     { label: 'About', href: '#about' },
     { label: 'Contact', href: '#contact' },
   ];
+
+  const handleScrollLink = (href: string) => {
+    setPage('main');
+    setOpen(false);
+    setTimeout(() => {
+      document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
+    }, 50);
+  };
+
+  const handleInterviews = () => {
+    setPage('interviews');
+    setOpen(false);
+    window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior });
+  };
 
   return (
     <>
@@ -25,25 +42,36 @@ export default function Header() {
         style={{
           background: scrolled ? 'rgba(10,25,47,0.92)' : 'transparent',
           backdropFilter: scrolled ? 'blur(12px)' : 'none',
-          borderBottom: scrolled ? '1px solid rgba(100,255,218,0.08)' : 'none',
         }}
       >
         <div className="w-full max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
-          <a href="#home" className="font-mono text-sm font-medium tracking-widest" style={{ color: '#64FFDA' }}>
-            SKATTA<span style={{ color: '#8892B0' }}>.exe</span>
-          </a>
+          <button
+            onClick={() => setPage('main')}
+            className="font-mono text-sm font-medium tracking-widest transition-opacity hover:opacity-70"
+            style={{ color: '#64FFDA' }}
+          >
+            SKATTA BURRELL
+          </button>
 
-          <nav className="hidden md:flex items-center gap-10">
-            {links.map((l, i) => (
+          <nav className="hidden md:flex items-center gap-8">
+            {scrollLinks.map((l, i) => (
               <a
                 key={l.label}
                 href={l.href}
+                onClick={e => { e.preventDefault(); handleScrollLink(l.href); }}
                 className="font-mono text-[10px] uppercase tracking-[0.3em] transition-colors duration-300 hover:text-green"
-                style={{ color: '#8892B0' }}
+                style={{ color: page === 'main' ? '#8892B0' : 'rgba(136,146,176,0.5)' }}
               >
                 <span style={{ color: '#64FFDA', marginRight: 6 }}>0{i + 1}.</span>{l.label}
               </a>
             ))}
+            <button
+              onClick={handleInterviews}
+              className="font-mono text-[10px] uppercase tracking-[0.3em] transition-colors duration-300 hover:text-green"
+              style={{ color: page === 'interviews' ? '#64FFDA' : '#8892B0' }}
+            >
+              <span style={{ color: '#64FFDA', marginRight: 6 }}>04.</span>Interviews
+            </button>
           </nav>
 
           <div className="flex items-center gap-4">
@@ -78,18 +106,18 @@ export default function Header() {
             style={{ background: '#0A192F', borderLeft: '1px solid rgba(100,255,218,0.12)' }}
           >
             <div className="flex justify-between items-center">
-              <span className="font-mono text-sm" style={{ color: '#64FFDA' }}>SKATTA<span style={{ color: '#8892B0' }}>.exe</span></span>
+              <span className="font-mono text-sm" style={{ color: '#64FFDA' }}>SKATTA BURRELL</span>
               <button onClick={() => setOpen(false)} style={{ color: '#64FFDA' }}>
                 <X size={22} />
               </button>
             </div>
 
             <nav className="flex flex-col gap-10">
-              {links.map((l, i) => (
+              {scrollLinks.map((l, i) => (
                 <a
                   key={l.label}
                   href={l.href}
-                  onClick={() => setOpen(false)}
+                  onClick={e => { e.preventDefault(); handleScrollLink(l.href); }}
                   className="font-sans font-bold text-5xl transition-colors hover:text-green"
                   style={{ color: '#E6F1FF' }}
                 >
@@ -97,6 +125,14 @@ export default function Header() {
                   {l.label}
                 </a>
               ))}
+              <button
+                onClick={handleInterviews}
+                className="font-sans font-bold text-5xl text-left transition-colors hover:text-green"
+                style={{ color: page === 'interviews' ? '#64FFDA' : '#E6F1FF' }}
+              >
+                <span className="font-mono text-base mr-4" style={{ color: '#64FFDA' }}>04.</span>
+                Interviews
+              </button>
             </nav>
 
             <p className="font-mono text-[10px] uppercase tracking-widest" style={{ color: '#8892B0' }}>

@@ -91,15 +91,6 @@ export default function Hero() {
       {/* Content */}
       <div className="relative z-20 w-full max-w-7xl mx-auto px-6 md:px-12 pb-44 md:pb-48">
 
-        <motion.p
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="font-mono text-green text-[10px] uppercase tracking-[0.5em] mb-6"
-        >
-          skattaburrell.com · Est. 1997
-        </motion.p>
-
         <div className="overflow-hidden mb-3">
           <motion.h1
             initial={{ y: '100%' }}
